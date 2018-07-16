@@ -1,0 +1,70 @@
+version: '2'
+
+services:
+    # ------------------------------------------------------------------------------------
+    # ELASTICSEARCH
+    # ------------------------------------------------------------------------------------
+    elasticsearch:
+        container_name: elk_elasticsearch
+        build: elasticsearch/
+        volumes:
+            - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+            - ./_data/elasticsearch:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - elk
+
+    # ------------------------------------------------------------------------------------
+    # LOGSTASH
+    # ------------------------------------------------------------------------------------
+    logstash:
+        container_name: elk_logstash
+        build: logstash/
+        volumes:
+            - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
+            - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+        ports:
+            - "5000:5000"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - elk
+        depends_on:
+            - elasticsearch
+
+    # ------------------------------------------------------------------------------------
+    # KIBANA
+    # ------------------------------------------------------------------------------------
+    kibana:
+        container_name: elk_kibana
+        build: kibana/
+        volumes:
+            - ./kibana/config/:/usr/share/kibana/config:ro
+        ports:
+            - "5601:5601"
+        networks:
+            - elk
+        depends_on:
+            - elasticsearch
+
+    # ------------------------------------------------------------------------------------
+    # INGESTOR
+    # ------------------------------------------------------------------------------------
+    ingestor:
+        container_name: elk_ingestor
+        build: ingestor/
+        volumes:
+            - ./_data/nmap:/data/
+        networks: 
+            - elk
+        depends_on:
+            - elasticsearch
+        restart: on-failure
+
+networks:
+    elk:
+        driver: bridge
