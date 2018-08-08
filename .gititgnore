@@ -1,4 +1,8 @@
-.DS_Store
+# Temp files
 *.tmp
 *.pyc
-_data/elasticsearch
+.DS_Store
+
+# Folders
+_data/elasticsearch/
+_data/nmap/*.xml
