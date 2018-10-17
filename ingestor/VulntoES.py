@@ -76,8 +76,9 @@ class NmapES:
 												dict_item_ports['scripts'] = dict()
 												dict_item_ports['scripts'][p.attrib['id']] = p.attrib['output']
 													
-							to_upload = merge_two_dicts(dict_item, dict_item_ports)							
-							self.es.index(index=self.index_name,doc_type="vuln", body=json.dumps(to_upload))
+							to_upload = merge_two_dicts(dict_item, dict_item_ports)	
+							if to_upload['state'] == 'open':
+								self.es.index(index=self.index_name,doc_type="vuln", body=json.dumps(to_upload))
 
 
 def merge_two_dicts(x, y):
