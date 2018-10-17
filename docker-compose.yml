@@ -7,6 +7,7 @@ services:
     elasticsearch:
         container_name: elk_elasticsearch
         build: elasticsearch/
+        restart: always
         volumes:
             - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
             - ./_data/elasticsearch:/usr/share/elasticsearch/data
@@ -24,6 +25,7 @@ services:
     logstash:
         container_name: elk_logstash
         build: logstash/
+        restart: always
         volumes:
             - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
             - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
@@ -42,6 +44,7 @@ services:
     kibana:
         container_name: elk_kibana
         build: kibana/
+        restart: always
         volumes:
             - ./kibana/config/:/usr/share/kibana/config:ro
         ports:
