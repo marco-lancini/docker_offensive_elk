@@ -14,13 +14,19 @@ A full walkthrough that led me to this setup can be found at: [https://www.marco
 ```
 ❯ git clone https://github.com/marco-lancini/docker_offensive_elk.git
 ```
-2. Start the stack using docker-compose:
+2. Create the `_data` folder and ensure it is owned by your own user:
+```
+❯ cd docker_offensive_elk/
+❯ mkdir ./_data/
+❯ sudo chown -R <user>:<user> ./_data/
+```
+3. Start the stack using docker-compose:
 ```
 docker-elk ❯ docker-compose up -d
 ```
-3. Give Kibana a few seconds to initialize, then access the Kibana web UI running at: http://localhost:5601.
-4. During the first run, [create an index](#create-an-index)
-5. [Ingest nmap results](#ingest-nmap-results)
+4. Give Kibana a few seconds to initialize, then access the Kibana web UI running at: http://localhost:5601.
+5. During the first run, [create an index](#create-an-index)
+6. [Ingest nmap results](#ingest-nmap-results)
 
 
 ### Create an Index
