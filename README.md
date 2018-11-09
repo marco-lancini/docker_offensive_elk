@@ -10,7 +10,7 @@ A full walkthrough that led me to this setup can be found at: [https://www.marco
 
 # Usage
 
-1. Clone this repository
+1. Clone this repository:
 ```
 ❯ git clone https://github.com/marco-lancini/docker_offensive_elk.git
 ```
@@ -25,8 +25,8 @@ A full walkthrough that led me to this setup can be found at: [https://www.marco
 docker-elk ❯ docker-compose up -d
 ```
 4. Give Kibana a few seconds to initialize, then access the Kibana web UI running at: http://localhost:5601.
-5. During the first run, [create an index](#create-an-index)
-6. [Ingest nmap results](#ingest-nmap-results)
+5. During the first run, [create an index](#create-an-index).
+6. [Ingest nmap results](#ingest-nmap-results).
 
 
 ### Create an Index
