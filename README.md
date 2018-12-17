@@ -1,8 +1,8 @@
 # Offensive ELK: Elasticsearch for Offensive Security
 
-Traditional “defensive” tools can be effectively used for Offensive security data analysis, helping your team collaborate and triage scan results.
+Offensive ELK is a custom Elasticsearch setup, aiming to show how traditional “defensive” tools can be effectively used for offensive security data analysis, helping your team collaborate and triage scan results.
 
-In particular, Elasticsearch offers the chance to aggregate a moltitude of disparate data sources, query them with a unifed interface, with the aim of extracting actionable knowledge from a huge amount of unclassified data.
+In particular, Elasticsearch offers the chance to aggregate a multitude of disparate data sources, query them with a unified interface, with the aim of extracting actionable knowledge from a huge amount of unclassified data.
 
 A full walkthrough that led me to this setup can be found at: [https://www.marcolancini.it/2018/blog-elk-for-nmap/](https://www.marcolancini.it/2018/blog-elk-for-nmap/).
 
