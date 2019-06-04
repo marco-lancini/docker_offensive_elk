@@ -40,7 +40,7 @@ class NmapES:
 			
 			for c in h:
 				if c.tag == 'address':
-					if c.attrib['addr']:
+					if c.attrib['addr'] and c.attrib['addrtype'] == 'ipv4':
 						dict_item['ip'] = c.attrib['addr']
 
 				elif c.tag == 'hostnames':
