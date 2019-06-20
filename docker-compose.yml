@@ -59,14 +59,13 @@ services:
     # ------------------------------------------------------------------------------------
     ingestor:
         container_name: elk_ingestor
-        build: ingestor/
+        build: extensions/ingestor/
         volumes:
             - ./_data/nmap:/data/
         networks: 
             - elk
         depends_on:
             - elasticsearch
-        restart: on-failure
 
 networks:
     elk:
