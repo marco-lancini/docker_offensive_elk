@@ -1,0 +1,8 @@
+#!/bin/bash
+
+FILES=/data/*.xml
+for f in $FILES
+do
+    echo "Processing $f file..."
+    python /opt/VulntoES/VulntoES.py -i $f -e elasticsearch -r nmap -I nmap-vuln-to-es
+done
