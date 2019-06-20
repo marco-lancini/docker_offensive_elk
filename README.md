@@ -30,7 +30,7 @@ docker-elk ❯ docker-compose up -d
 
 
 
-## Ingest Nmap Results
+### Ingest Nmap Results
 
 In order to be able to ingest our Nmap scans, we will have to output the results in an XML formatted report (`-oX`) that can be parsed by Elasticsearch.
 Once done with the scans, place the reports in the `./_data/nmap/` folder and run the ingestor:
