@@ -45,22 +45,22 @@ class NmapES:
 						dict_item['mac'] = c.attrib['addr']
 
 				elif c.tag == 'hostnames':
-					for names in c.getchildren():
+					for names in list(c):
 						if names.attrib['name']:
 							dict_item['hostname'] = names.attrib['name']
 
 				elif c.tag == 'ports':
-					for port in c.getchildren():
+					for port in list(c):
 						dict_item_ports = {}
 						if port.tag == 'port':
 							# print(port.tag, port.attrib)
 							dict_item_ports['port'] = port.attrib['portid']
 							dict_item_ports['protocol'] = port.attrib['protocol']
-							for p in port.getchildren():
+							for p in list(port):
 								if p.tag == 'state':
 									dict_item_ports['state'] = p.attrib['state']
 								elif p.tag == 'service':
-									for cpe in p.getchildren():
+									for cpe in list(p):
 										if cpe.tag == 'cpe':
 											dict_item_ports['cpe'] = cpe.text
 									dict_item_ports['service'] = p.attrib['name']
@@ -81,7 +81,7 @@ class NmapES:
 													
 							to_upload = merge_two_dicts(dict_item, dict_item_ports)	
 							if to_upload['state'] == 'open':
-								self.es.index(index=self.index_name, doc_type="vuln", body=json.dumps(to_upload))
+								self.es.index(index=self.index_name, body=json.dumps(to_upload))
 
 def merge_two_dicts(x, y):
     z = x.copy()   # start with x's keys and values
