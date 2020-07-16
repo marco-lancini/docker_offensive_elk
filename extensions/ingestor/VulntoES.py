@@ -62,7 +62,10 @@ class NmapES:
 								elif p.tag == 'service':
 									for cpe in list(p):
 										if cpe.tag == 'cpe':
-											dict_item_ports['cpe'] = cpe.text
+											if 'cpe' in dict_item_ports:
+												dict_item_ports['cpe'] = dict_item_ports['cpe']+[cpe.text]
+											else:
+												dict_item_ports['cpe'] = [cpe.text]
 									dict_item_ports['service'] = p.attrib['name']
 									if 'product' in p.attrib and p.attrib['product']:
 										dict_item_ports['product_name'] = p.attrib['product']
