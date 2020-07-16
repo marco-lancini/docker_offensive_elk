@@ -47,7 +47,10 @@ class NmapES:
 				elif c.tag == 'hostnames':
 					for names in list(c):
 						if names.attrib['name']:
-							dict_item['hostname'] = names.attrib['name']
+							if 'hostname' in dict_item:
+								dict_item['hostname'] = dict_item['hostname']+[names.attrib['name']]
+							else:
+								dict_item['hostname'] = [names.attrib['name']]
 
 				elif c.tag == 'ports':
 					for port in list(c):
